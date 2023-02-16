@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::resource('products', PostController::class);
+    Route::resource('posts', PostController::class);
 });
 
 Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
