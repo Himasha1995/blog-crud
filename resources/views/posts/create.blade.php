@@ -13,7 +13,7 @@
                 <h2>Add New Post</h2>
             </div>
         <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('post') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -33,13 +33,12 @@
     @endif
 
 
-    {!! Form::open(array('route' => 'posts.store','method'=>'POST', 'enctype'=>'multipart/form-data')) !!}
-    
+<from>    
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
 		            <strong>Author Id:</strong>
-                    {!! Form::textarea('author_id', null, array('placeholder' => 'Author_Id','class' => 'form-control')) !!}		            
+                    <input type="text"class="form-control form-control-sm form-control-border border-width-2"name="slug">
 		        </div>
 		    </div>
 
@@ -47,55 +46,63 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
 		            <strong>Parent Id:</strong>
-                    {!! Form::textarea('parent_id', null, array('placeholder' => 'Parent_Id','class' => 'form-control')) !!}		            
 		        </div>
 		    </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
-		        <div class="form-group">
-		            <strong>Title:</strong>
-                    {!! Form::textarea('title', null, array('placeholder' => 'Title','class' => 'form-control')) !!}		            
-		        </div>
-		    </div>
+            <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="mb-sm-0">Title<code> *</code></label>
+                            <input type="text"class="form-control form-control-sm form-control-border border-width-2"name="title">
+                        </div>
+                    </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
-		        <div class="form-group">
-		            <strong>Meta Title:</strong>
-                    {!! Form::textarea('meta_title', null, array('placeholder' => 'Meta_Title','class' => 'form-control')) !!}		            
-		        </div>
-		    </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
-		        <div class="form-group">
-		            <strong>Slug:</strong>
-                    {!! Form::textarea('slug', null, array('placeholder' => 'slug','class' => 'form-control')) !!}		            
-		        </div>
-		    </div>
+            <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="mb-sm-0">Meta Title<code> *</code></label>
+                            <input type="text" class="form-control form-control-sm form-control-border border-width-2"name="meta_title">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="mb-sm-0">Slug</label>
+                            <input type="text"class="form-control form-control-sm form-control-border border-width-2"name="slug">
+                        </div>
+                    </div>
+                </div>
      
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Post Image:</strong>
-                    {!! Form::file('image', null) !!}                    
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="mb-sm-0">Post Image<code> *</code></label>
+                            <input type="file" class="form-control form-control-sm form-control-file"
+                                   name="post_image">
+                        </div>
+                    </div>
+            
+
+		    <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label class="mb-sm-0">Summary</label>
+                            <textarea rows="3" class="form-control form-control-sm form-control-border border-width-2" name="summary"></textarea>
+                        </div>
+                    </div>
+                </div> 
+            
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label class="mb-sm-0">Content</label>
+                            <textarea rows="3" id="post_content_editor"class="form-control form-control-sm form-control-border border-width-2" name="post_content"></textarea>
+                        </div>
+                    </div>
                 </div>
-            </div>    
-            
-            
-
-		    <div class="col-xs-12 col-sm-12 col-md-12">
-		        <div class="form-group">
-		            <strong>Summery:</strong>
-                    {!! Form::textarea('summery', null, array('placeholder' => 'Summery','class' => 'form-control')) !!}		            
-		        </div>
-		    </div>  
-            
-
-            <div class="mb-6">
-                <label class="block">
-                <span class="text-gray-700">Content</span>
-                <textarea id="editor" style="height:150px" class="block w-full mt-1 rounded-md" name="content" rows="3"></textarea>
-                </label>
-            </div>  
 
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 		            <button type="submit" class="btn btn-primary">Submit</button>
@@ -103,7 +110,7 @@
 
 		</div>
     </form>
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#editor' ) )

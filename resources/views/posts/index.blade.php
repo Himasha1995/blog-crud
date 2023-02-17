@@ -37,22 +37,22 @@
             <th width="280px">Action</th>
         </tr>
 
-        @foreach ($posts as $post)
+        @foreach ($posts as $posts)
 	    <tr>
 	        <td>{{ ++$i }}</td>
-	        <td>{{ $post->title }}</td>
-            <td><img src="/image/{{ $post->image }}" width="100px"></td>
-            <td>{{ $post->summery }}</td>
-            <td>{{ !! html_entity_decode($post->content) }}</td>
+	        <td>{{ $posts->title }}</td>
+            <td><img src="/image/{{ $posts->image }}" width="100px"></td>
+            <td>{{ $posts->summery }}</td>
+            <td>{{ !! html_entity_decode($posts->content) }}</td>
             
 	        <td>            
-                <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Show</a>
-                @can('post-edit')
-                <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
+                <a class="btn btn-info" href="{{ route('posts.show',$posts->id) }}">Show</a>
+                @can('posts-edit')
+                <a class="btn btn-primary" href="{{ route('posts.edit',$posts->id) }}">Edit</a>
                 @endcan                
                 
-                @can('post-delete')
-                    {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline']) !!}
+                @can('posts-delete')
+                    {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $posts->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                     {!! Form::close() !!}
                 @endcan            

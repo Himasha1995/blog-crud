@@ -76,5 +76,11 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="{{asset('ckeditor\ckeditor.js')}}"></script>
+<script>
+    CKEDITOR.replace( 'editor' );
+    CKEDITOR.replace( 'id' );
+</script>
 </body>
 </html>

@@ -21,7 +21,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::group(['middleware' => ['auth']], function() {
@@ -29,14 +28,22 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+    Route::get('/home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
+
+});
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/post/edit/{post_id}', [PostController::class,'edit_post'])->name('edit_post');
-    Route::post('/post/edit/{post_id}', [PostController::class,'update_post'])->name('update_post');
-    Route::post('/post/inline', [PostController::class,'inline'])->name('inline');
+   // Route::get('/post/edit/{post_id}', [PostController::class,'edit_post'])->name('edit_post');
+   // Route::post('/post/edit/{post_id}', [PostController::class,'update_post'])->name('update_post');
+   // Route::post('/post/inline', [PostController::class,'inline'])->name('inline');*/
 
-});
 
-Route::middleware('auth:sanctum')->group( function () {
-    Route::resource('posts', PostController::class);
-});
-//Route::get('/', [\App\Http\Controllers\PostController::class,'index']);
+
+
+
+
+   Route::get('/posts', [\App\Http\Controllers\PostController::class,'index'])->name('post');
+    Route::get('/posts/create', [\App\Http\Controllers\PostController::class,'create']);
+    Route::post('/posts/create', [\App\Http\Controllers\PostController::class,'posts-edit']);
+    Route::post('/post/edit/{post_id}', [PostController::class,'update_post']);
+    Route::post('/posts/inline', [\App\Http\Controllers\PostController::class,'inline'])->name('inline');
+

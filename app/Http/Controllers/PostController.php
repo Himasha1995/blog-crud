@@ -15,13 +15,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
-    {
-         $this->middleware('permission:post-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:post-create', ['only' => ['create','store']]);
-         $this->middleware('permission:post-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:post-delete', ['only' => ['destroy']]);
-    }
+    // function __construct()
+    // {
+    //      $this->middleware('permission:post-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
+    //      $this->middleware('permission:posts-create', ['only' => ['create','store']]);
+    //      $this->middleware('permission:posts-edit', ['only' => ['edit','update']]);
+    //      $this->middleware('permission:posts-delete', ['only' => ['destroy']]);
+    // }
 
     /**
      * Display a listing of the resource.
@@ -30,9 +30,17 @@ class PostController extends Controller
      */
     public function index()
     {
+        // dd('ss');
+
+        
+        $user = Auth::user();
+        if ($user->can('view post')) {
         $posts = Post::with('posts')->latest()->paginate(10);
 
-        return view('posts.index', compact('posts'));
+        return view('posts.all', compact('posts'));
+        }else{
+            dd("else");
+        }
     }
 
     /**
@@ -42,9 +50,14 @@ class PostController extends Controller
      */
     public function create()
     {
-        $posts = Posts::all();
-
-        return view('posts.create', compact('categories'));
+        
+        $user = Auth::user();
+        if ($user->can('create post')) {
+        $posts = Post::all();
+        return view('posts.create');
+        }else{
+            dd('user hasnt permission');
+        }
     }
 
     /**
@@ -76,9 +89,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Posts $posts)
     {
-        return view('posts.show', compact('post'));
+        return view('posts.show', compact('posts'));
     }
 
     /**
@@ -87,9 +100,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Posts $posts)
     {
-        return view('posts.edit',compact('post'));
+        return view('posts.edit',compact('posts'));
     }
 
     /**
@@ -99,7 +112,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Posts $posts)
     {
         $request->validate([
             'author_id' => 'required',
@@ -111,7 +124,7 @@ class PostController extends Controller
         ]);
 
         $input = $request->all(); 
-        $post->update($input);
+        $posts->update($input);
 
         return redirect()->route('posts.index')->with('status', 'Post Created Successfully');
     }
@@ -122,11 +135,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Posts $posts)
     {
-        $ImagePath = 'image/'.$post->image;
+        $ImagePath = 'image/'.$posts->image;
         unset($ImagePath);
-        $post->delete();
+        $posts->delete();
         Cache::forget('posts');
         return redirect()->route('posts.index')->with('success','Post deleted successfully');
     }
@@ -134,11 +147,11 @@ class PostController extends Controller
     public function inline(Request $request)
     {
         $user = Auth::user();
-        if ($user->can('post-edit')) {
-            $post = Post::findorFail($request->post_id);
-            if ($post) {
-                $post->content = $request->post_content;
-                $post->save();
+        if ($user->can('posts-edit')) {
+            $posts = Posts::findorFail($request->posts_id);
+            if ($posts) {
+                $posts->content = $request->posts_content;
+                $posts->save();
                 if ($request->is_ajax_call) {
                     return response()->json(['success' => 'Post content edited Successfully']);
                 }
