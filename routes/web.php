@@ -73,16 +73,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/blog', [App\Http\Controllers\Contents\BlogController::class, 'index'])->name('index');
     Route::get('/blog-details', [App\Http\Controllers\Contents\BlogDetailsController::class, 'index'])->name('index');
     Route::get('/index', [App\Http\Controllers\Contents\MasterController::class, 'index'])->name('index');
-    Route::get('/index-2', [App\Http\Controllers\Contents\Master1Controller::class, 'index'])->name('index');
-    Route::get('/index-3', [App\Http\Controllers\Contents\Master2Controller::class, 'index'])->name('index');
-    Route::get('/index-4', [App\Http\Controllers\Contents\Master3Controller::class, 'index'])->name('index');
-    Route::get('/index-5', [App\Http\Controllers\Contents\Master4Controller::class, 'index'])->name('index');
-    Route::get('/index-6', [App\Http\Controllers\Contents\Master5Controller::class, 'index'])->name('index');
-    Route::get('/index-7', [App\Http\Controllers\Contents\Master6Controller::class, 'index'])->name('index');
-    Route::get('/index-8', [App\Http\Controllers\Contents\Master7Controller::class, 'index'])->name('index');
-    Route::get('/travel', [App\Http\Controllers\Contents\TravelController::class, 'index'])->name('index');
-    Route::get('/lifestyle', [App\Http\Controllers\Contents\LifeStyleController::class, 'index'])->name('index');
-    Route::get('/ntf', [App\Http\Controllers\Contents\NtfController::class, 'index'])->name('index');
+    Route::get('/index-2', [App\Http\Controllers\Contents\Master1Controller::class, 'index'])->name('index-2');
+    Route::get('/index-3', [App\Http\Controllers\Contents\Master2Controller::class, 'index'])->name('index-3');
+    Route::get('/index-4', [App\Http\Controllers\Contents\Master3Controller::class, 'index'])->name('index-4');
+    Route::get('/index-5', [App\Http\Controllers\Contents\Master4Controller::class, 'index'])->name('index-5');
+    Route::get('/index-6', [App\Http\Controllers\Contents\Master5Controller::class, 'index'])->name('index-6');
+    Route::get('/index-7', [App\Http\Controllers\Contents\Master6Controller::class, 'index'])->name('index-7');
+    Route::get('/index-8', [App\Http\Controllers\Contents\Master7Controller::class, 'index'])->name('index-8');
+    Route::get('/travel', [App\Http\Controllers\Contents\TravelController::class, 'index'])->name('travel');
+    Route::get('/lifestyle', [App\Http\Controllers\Contents\LifeStyleController::class, 'index'])->name('lifestyle');
+    Route::get('/ntf', [App\Http\Controllers\Contents\NtfController::class, 'index'])->name('ntf');
 
 
 
