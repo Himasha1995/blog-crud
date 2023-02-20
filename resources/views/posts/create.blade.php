@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-<!--Boostrap Css link-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-<!--front link-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
 
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -13,7 +8,7 @@
                 <h2>Add New Post</h2>
             </div>
         <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('post') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
             </div>
         </div>
     </div>

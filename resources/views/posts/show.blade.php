@@ -7,7 +7,7 @@
                 <h2> Show Post</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('post') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -17,28 +17,28 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Image:</strong>
-                <img src="/image/{{ $post->image }}" width="500px">
+                <img src="/image/{{ $posts->image }}" width="500px">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Title:</strong>
-                {{ $post->title }}
+                {{ $posts->title }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Summery:</strong>
-                {{ $post->summery }}
+                {{ $posts->summery }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Content:</strong>
-                {{ $post->content }}
+                {{ $posts->content }}
             </div>
         </div>
 

@@ -37,7 +37,7 @@ class PostController extends Controller
         if ($user->can('view post')) {
         $posts = Post::with('posts')->latest()->paginate(10);
 
-        return view('posts.all', compact('posts'));
+        return view('posts.index', compact('posts'));
         }else{
             dd("else");
         }
@@ -56,7 +56,7 @@ class PostController extends Controller
         $posts = Post::all();
         return view('posts.create');
         }else{
-            dd('user hasnt permission');
+            return redirect()->route('posts.show')->with('toast_error', 'Ops! You dont have Permission!');
         }
     }
 
